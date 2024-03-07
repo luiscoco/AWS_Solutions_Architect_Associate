@@ -2,6 +2,8 @@
 
 https://explore.skillbuilder.aws/learn/lp/1044/Solutions%2520Architect%2520-%2520Knowledge%2520Badge%2520Readiness%2520Path
 
+https://explore.skillbuilder.aws/learn/learning_plan/view/1046/solutions-architect-learning-plan-includes-labs
+
 ## 1. How to create VPC, Subnet, Internet Gateway, Route Table
 
 Creating an Amazon Virtual Private Cloud (VPC) using the AWS Command Line Interface (CLI) involves a series of steps
