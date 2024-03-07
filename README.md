@@ -57,7 +57,7 @@ aws ec2 create-route-table --vpc-id vpc-id
 
 Replace vpc-id with the ID of your VPC
 
-Create a route in the route table to point to the internet gateway:
+**Create a route in the route table to point to the internet gateway**:
 
 ```
 aws ec2 create-route --route-table-id route-table-id --destination-cidr-block 0.0.0.0/0 --gateway-id igw-id
@@ -65,13 +65,13 @@ aws ec2 create-route --route-table-id route-table-id --destination-cidr-block 0.
 
 Replace route-table-id with the ID of the route table created in step 5 and igw-id with the ID of the internet gateway
 
-Associate the subnet with the route table:
+**Associate the subnet with the route table**:
 
 ```
 aws ec2 associate-route-table --subnet-id subnet-id --route-table-id route-table-id
 ```
 
-Replace subnet-id with the ID of the subnet created in step 3 and route-table-id with the ID of the route table created in step 5.
+Replace subnet-id with the ID of the subnet created in step 3 and route-table-id with the ID of the route table created in step 5
 
 These are the basic steps to create a VPC using the AWS CLI 
 
