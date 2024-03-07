@@ -1,4 +1,4 @@
-# AWS Solutions Architect Associate
+# AWS Solutions Architect Associate (AWS CLI Commands samples)
 
 ## 1. How to create VPC, Subnet, Internet Gateway, Route Table with AWS CLI
 
