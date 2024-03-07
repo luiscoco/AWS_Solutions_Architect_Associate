@@ -1,6 +1,6 @@
 # AWS Solutions Architect Associate
 
-## 1. How to create VPC, Subnet, Internet Gateway, Route Table
+## 1. How to create VPC, Subnet, Internet Gateway, Route Table with AWS CLI
 
 Creating an Amazon Virtual Private Cloud (VPC) using the AWS Command Line Interface (CLI) involves a series of steps
 
@@ -76,3 +76,49 @@ These are the basic steps to create a VPC using the AWS CLI
 You can further configure your VPC by adding additional subnets, security groups, network ACLs, etc., as per your requirements
 
 Make sure you have the necessary permissions to execute these commands
+
+## 2. How to create AWS EC2 with AWS CLI
+
+To create an AWS EC2 instance using the AWS CLI commands and run the provided user data script, you can follow these steps:
+
+**Create a security group**: 
+
+This security group should allow inbound traffic on port 80 for HTTP access and any other necessary ports for your application
+
+```
+aws ec2 create-security-group --group-name WebAppSecurityGroup --description "Security group for web application"
+```
+
+**Authorize inbound traffic for HTTP (port 80)**:
+
+```
+aws ec2 authorize-security-group-ingress --group-name WebAppSecurityGroup --protocol tcp --port 80 --cidr 0.0.0.0/0
+```
+
+**Launch an EC2 instance**:
+
+```
+aws ec2 run-instances --image-id ami-xxxxxx (Amazon Linux AMI ID) --count 1 --instance-type t2.micro --key-name your-key-pair-name --security-groups WebAppSecurityGroup --user-data file://user-data-script.sh
+```
+
+
+
+Replace ami-xxxxxx with the appropriate Amazon Linux AMI ID for your region and your-key-pair-name with the name of your EC2 key pair
+
+Amazon Linux 2023 user data script:
+
+**user-data-script.sh**
+
+```
+#!/bin/bash -ex
+wget https://aws-tc-largeobjects.s3-us-west-2.amazonaws.com/DEV-AWS-MO-GCNv2/FlaskApp.zip
+unzip FlaskApp.zip
+cd FlaskApp/
+yum -y install python3-pip
+pip install -r requirements.txt
+yum -y install stress
+export PHOTOS_BUCKET=${SUB_PHOTOS_BUCKET}
+export AWS_DEFAULT_REGION=<INSERT REGION HERE>
+export DYNAMO_MODE=on
+FLASK_APP=application.py /usr/local/bin/flask run --host=0.0.0.0 --port=80
+```
