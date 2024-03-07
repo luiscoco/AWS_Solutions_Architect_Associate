@@ -122,3 +122,55 @@ export AWS_DEFAULT_REGION=<INSERT REGION HERE>
 export DYNAMO_MODE=on
 FLASK_APP=application.py /usr/local/bin/flask run --host=0.0.0.0 --port=80
 ```
+
+## 3. How to create AWS S3 bucket
+
+To create an AWS S3 bucket using the AWS CLI commands for storing images, follow these steps:
+
+**Create an S3 Bucket**:
+
+```
+aws s3api create-bucket --bucket your-bucket-name --region your-region
+```
+
+Replace your-bucket-name with your desired bucket name and your-region with the AWS region where you want to create the bucket.
+
+**Enable Bucket Versioning** (optional but recommended for data protection):
+
+```
+aws s3api put-bucket-versioning --bucket your-bucket-name --versioning-configuration Status=Enabled
+```
+
+**Configure Bucket Policy** (optional but recommended for access control):
+
+Here's a basic example of a bucket policy allowing read access to all objects in the bucket:
+
+**bucket-policy.json**
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::your-bucket-name/*"
+        }
+    ]
+}
+```
+
+You can set this policy using the following command:
+
+```
+aws s3api put-bucket-policy --bucket your-bucket-name --policy file://bucket-policy.json
+```
+
+Replace **bucket-policy.json** with the path to your JSON bucket policy file
+
+Now, your S3 bucket is created and ready to store images
+
+You can upload images using the AWS CLI or any other AWS SDKs and tools
+
