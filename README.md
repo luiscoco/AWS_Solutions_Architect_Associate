@@ -174,3 +174,22 @@ Now, your S3 bucket is created and ready to store images
 
 You can upload images using the AWS CLI or any other AWS SDKs and tools
 
+Also we can specify in the Principal the Role who is granted to access the S3 bucket
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowS3ReadAccess",
+            "Effect": "Allow",
+            "Principal": {
+	    	"AWS": "arn:aws::AccountNumber:role/S3DynamoDBFullAccessRole"
+            },
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::your-bucket-name/*"
+        }
+    ]
+}
+```
+
