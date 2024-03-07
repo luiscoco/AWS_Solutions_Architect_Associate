@@ -98,14 +98,14 @@ aws ec2 authorize-security-group-ingress --group-name WebAppSecurityGroup --prot
 **Launch an EC2 instance**:
 
 ```
-aws ec2 run-instances --image-id ami-xxxxxx (Amazon Linux AMI ID) --count 1 --instance-type t2.micro --key-name your-key-pair-name --security-groups WebAppSecurityGroup --user-data file://user-data-script.sh
+aws ec2 run-instances --image-id ami-xxxxxx --count 1 --instance-type t2.micro --key-name your-key-pair-name --security-groups WebAppSecurityGroup --user-data file://user-data-script.sh
 ```
-
-
 
 Replace ami-xxxxxx with the appropriate Amazon Linux AMI ID for your region and your-key-pair-name with the name of your EC2 key pair
 
-Amazon Linux 2023 user data script:
+Amazon Linux 2023 AMI (ami-0b7282dd7deb48e78)
+
+**Amazon Linux 2023 user data script**:
 
 **user-data-script.sh**
 
